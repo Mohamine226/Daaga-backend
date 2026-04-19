@@ -113,8 +113,8 @@ class DocumentResponse(BaseModel):
     categorie: str
     langue: str
     domaine: str
-    pdfUrl: Optional[str] = None
-    imageUrl: Optional[str] = None
+    pdfUrl: str
+    imageUrl: str 
     vendeur_id: int
     achats: int
     date_publication: Optional[datetime] = None
@@ -130,8 +130,8 @@ class Documentbiblio(BaseModel):
     categorie: str
     langue: str
     domaine: str
-    pdfUrl: Optional[str] = None
-    imageUrl: Optional[str] = None
+    pdfUrl: str
+    imageUrl: str
     vendeur_id: int
     achats: int
     date_publication: Optional[datetime] = None
