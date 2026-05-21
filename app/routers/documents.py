@@ -300,7 +300,7 @@ async def get_bibliotheque(user_id: int, db: AsyncSession = Depends(get_db)):
     docs = result.scalars().all()
 
     # 🔹 Transformer en réponses avec URLs Supabase
-    return [Documentbiblio.from_orm_with_urls(doc) for doc in docs]
+    return docs
 
 
 

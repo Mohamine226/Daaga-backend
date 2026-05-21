@@ -1,4 +1,4 @@
-from pydantic import BaseModel, EmailStr
+from pydantic import BaseModel, EmailStr, Field
 from datetime import datetime
 from typing import Optional
 from app.models import Document
@@ -130,31 +130,15 @@ class Documentbiblio(BaseModel):
     categorie: str
     langue: str
     domaine: str
-    pdfUrl: str
-    imageUrl: str
+    pdfUrl: str = Field(alias="pdf_path")
+    imageUrl: str = Field(alias="couverture_path")
     vendeur_id: int
     achats: int
     date_publication: Optional[datetime] = None
 
     class Config:
         from_attributes = True
-
-    @classmethod
-    def from_orm_with_urls(cls, doc: "Document"):
-        return cls(
-            id=doc.id,
-            titre=doc.titre,
-            description=doc.description,
-            prix=doc.prix,
-            categorie=doc.categorie,
-            langue=doc.langue,
-            domaine=doc.domaine,
-            pdfUrl=doc.pdf_path,          # ⚠️ déjà une URL complète
-            imageUrl=doc.couverture_path, # ⚠️ déjà une URL complète
-            vendeur_id=doc.vendeur_id,
-            achats=doc.achats,
-            date_publication=doc.date_publication,
-        )
+        populate_by_name = True
 
 
 
